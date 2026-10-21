@@ -76,3 +76,41 @@ function open(i){
   $("hm").textContent=Math.floor(t%3600/60);$("hs").textContent=Math.floor(t%60)};
  tick();setInterval(tick,1000);
 })();
+
+/* ===== Bubuu Wrapped: edit the slides here ===== */
+(function(){
+ const W=[
+  {bg:"#FFD0B8",fg:"#155F67",k:"Bubuu Wrapped 2026",big:"You,<br>Maharani",s:"Tap to see your year 💓"},
+  {bg:"#155F67",fg:"#FFD0B8",k:"You made me smile",big:"1,000,000+",s:"times this year. I stopped counting 🥰"},
+  {bg:"#FF8FA3",fg:"#4a0d20",k:"Your top 5 things",list:["Your smile","Your voice","Your eyes","Your care","Just you"]},
+  {bg:"#FFD0B8",fg:"#155F67",k:"Minutes I spent thinking about you",big:"525,600",s:"That's every single minute of the year 💭"},
+  {bg:"#155F67",fg:"#FFD0B8",k:"You are in the top",big:"0.01%",s:"of every girl in the world. Rank #1 for me 👑"},
+  {bg:"#FFB3C1",fg:"#155F67",k:"Your listening personality",big:"The<br>Maharani",s:"Calm. Caring. Cute. Mine. ❤️"},
+  {bg:"#155F67",fg:"#FFD0B8",k:"Wrapped 2026, done",big:"Love<br>you",s:"Advance happiest birthday babyyy ❤️<br>Duduu",end:true}
+ ];
+ const el=document.createElement("div");el.id="wrapped";
+ el.innerHTML='<div class="wbars"></div><button class="wx">✕</button><div class="wl"></div><div class="wr"></div><div class="wslide"></div>';
+ document.body.appendChild(el);
+ const bars=el.querySelector(".wbars"),sl=el.querySelector(".wslide");
+ bars.innerHTML=W.map(()=>"<i><u></u></i>").join("");
+ let i=0,tm;
+ function close(){clearTimeout(tm);el.classList.remove("on")}
+ function show(n){
+  if(n<0)n=0;
+  if(n>=W.length){close();return}
+  i=n;clearTimeout(tm);
+  const s=W[n];
+  el.style.background=s.bg;el.style.color=s.fg;
+  sl.innerHTML="<small>"+s.k+"</small>"+(s.big?"<h2>"+s.big+"</h2>":"")+
+   (s.list?"<ol>"+s.list.map(x=>"<li>"+x+"</li>").join("")+"</ol>":"")+
+   (s.s?"<p>"+s.s+"</p>":"")+(s.end?'<button class="wend" id="wend">← Back to home</button>':"");
+  sl.style.animation="none";void sl.offsetWidth;sl.style.animation="";
+  [...bars.children].forEach((b,k)=>{const u=b.firstChild;u.style.transition="none";u.style.width=k<n?"100%":"0";u.style.background=s.fg});
+  const cur=bars.children[n].firstChild;void cur.offsetWidth;cur.style.transition="width 5s linear";cur.style.width="100%";
+  if(s.end)document.getElementById("wend").onclick=close;else tm=setTimeout(()=>show(n+1),5000);
+ }
+ el.querySelector(".wl").onclick=()=>show(i-1);
+ el.querySelector(".wr").onclick=()=>show(i+1);
+ el.querySelector(".wx").onclick=close;
+ document.getElementById("wrapBtn").onclick=()=>{el.classList.add("on");show(0);if(au.paused)au.play().catch(()=>{});setTimeout(setPlay,80)};
+})();

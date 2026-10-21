@@ -111,3 +111,23 @@ body::before{mix-blend-mode:normal;opacity:.08;will-change:auto;transform:transl
 #mini{display:none!important}
 #view{padding-bottom:40px}
 #home{padding-bottom:40px}
+.wrapbtn{display:block;width:100%;margin:20px 0 6px;padding:18px;border:0;border-radius:30px;background:linear-gradient(90deg,#FF8FA3,#FFB3C1);color:#4a0d20;font-family:'Anton',sans-serif;font-size:1.15rem;letter-spacing:.06em;box-shadow:0 10px 26px #0b3a4055;animation:beat 2s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(1.03)}}
+#wrapped{position:fixed;top:0;bottom:0;left:0;right:0;margin:0 auto;width:100%;max-width:480px;z-index:30;display:none;overflow:hidden}
+#wrapped.on{display:block}
+#wrapped::after{content:"";position:absolute;right:-90px;bottom:-90px;width:300px;height:300px;border-radius:58% 42% 50% 50%;background:currentColor;opacity:.12}
+.wbars{position:absolute;top:14px;left:14px;right:14px;display:flex;gap:5px;z-index:5}
+.wbars i{flex:1;height:3px;border-radius:3px;background:#00000022;overflow:hidden}
+.wbars u{display:block;height:100%;width:0;border-radius:3px}
+.wx{position:absolute;top:28px;right:16px;z-index:6;background:none;border:0;color:inherit;font-size:1.5rem}
+.wl,.wr{position:absolute;top:70px;bottom:0;z-index:2}
+.wl{left:0;width:35%}.wr{right:0;width:65%}
+.wslide{position:absolute;inset:0;z-index:3;padding:90px 28px 40px;display:flex;flex-direction:column;justify-content:center;pointer-events:none;animation:wIn .6s both}
+@keyframes wIn{from{opacity:0;transform:translateY(24px) scale(.96)}}
+.wslide small{font-size:.8rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+.wslide h2{font-family:'Anton',sans-serif;font-weight:400;font-size:min(19vw,5.6rem);line-height:.98;text-transform:uppercase}
+.wslide p{font-size:1.15rem;font-weight:500;margin-top:18px;line-height:1.4}
+.wslide ol{list-style:none;counter-reset:n}
+.wslide li{counter-increment:n;font-family:'Anton',sans-serif;font-size:2.3rem;text-transform:uppercase;line-height:1.35}
+.wslide li::before{content:counter(n)"  ";opacity:.5}
+.wend{pointer-events:auto;margin-top:30px;padding:15px;border:0;border-radius:30px;background:#FFD0B8;color:#155F67;font-weight:700;font-size:1rem;font-family:'DM Sans',sans-serif}
